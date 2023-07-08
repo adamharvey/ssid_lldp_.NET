@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "pgTF6yj9igKvnVx5dDn2moBdh6zeBoxiwAQ+BgHeS8bmfw6eglVGNzw1mB4pAoz0I291NDK/5NTuRmG5XTZ8UA==",
+  "success": true,
+  "projectFilePath": "D:\\repos\\ssid_lldp_.NET_console\\ConsoleApp1\\ConsoleApp1.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\default.DESKTOP-36E94IK\\.nuget\\packages\\microsoft.windows.sdk.net.ref\\10.0.19041.28\\microsoft.windows.sdk.net.ref.10.0.19041.28.nupkg.sha512"
+  ],
+  "logs": []
+}

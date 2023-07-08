@@ -1,0 +1,5 @@
+D:\repos\ssid_lldp_.NET_console\ConsoleApp1\obj\Debug\net5.0-windows10.0.19041.0\ConsoleApp1.csproj.AssemblyReference.cache
+D:\repos\ssid_lldp_.NET_console\ConsoleApp1\obj\Debug\net5.0-windows10.0.19041.0\ConsoleApp1.GeneratedMSBuildEditorConfig.editorconfig
+D:\repos\ssid_lldp_.NET_console\ConsoleApp1\obj\Debug\net5.0-windows10.0.19041.0\ConsoleApp1.AssemblyInfoInputs.cache
+D:\repos\ssid_lldp_.NET_console\ConsoleApp1\obj\Debug\net5.0-windows10.0.19041.0\ConsoleApp1.AssemblyInfo.cs
+D:\repos\ssid_lldp_.NET_console\ConsoleApp1\obj\Debug\net5.0-windows10.0.19041.0\ConsoleApp1.csproj.CoreCompileInputs.cache
