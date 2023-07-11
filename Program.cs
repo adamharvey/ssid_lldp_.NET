@@ -1,113 +1,90 @@
-﻿//*********************************************************
-//
-// Copyright (c) Microsoft. All rights reserved.
-// This code is licensed under the MIT License (MIT).
-// THIS CODE IS PROVIDED *AS IS* WITHOUT WARRANTY OF
-// ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING ANY
-// IMPLIED WARRANTIES OF FITNESS FOR A PARTICULAR
-// PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.
-//
-//*********************************************************
-
-using System;
+﻿using System.Diagnostics;
 using Windows.Devices.WiFi;
-using System.Collections.ObjectModel;
-using System.Collections;
-using System.Threading.Tasks;
-using Windows.UI.StartScreen;
-using Microsoft.VisualBasic;
-using Windows.Security.Credentials;
+using Windows.Networking.Connectivity;
 
 namespace WiFiScan
 {
     public class TestScan
     {
-        private WiFiAdapter firstAdapter;
-        private static ArrayList wlanList;
-//        private static ArrayList wifiList;
+        static string GetLanIdentifierData(LanIdentifier lanIdentifier)
+        {
+            string lanIdentifierData = string.Empty;
+            if (lanIdentifier == null)
+            {
+                return lanIdentifierData;
+            }
+
+            if (lanIdentifier.InfrastructureId != null)
+            {
+                lanIdentifierData += "Infrastructure Type: " + lanIdentifier.InfrastructureId.Type + "\n";
+                lanIdentifierData += "Infrastructure Value: ";
+                var infrastructureIdValue = lanIdentifier.InfrastructureId.Value;
+                foreach (var value in infrastructureIdValue)
+                {
+                    lanIdentifierData += value + " ";
+                }
+            }
+
+            if (lanIdentifier.PortId != null)
+            {
+                lanIdentifierData += "\nPort Type : " + lanIdentifier.PortId.Type + "\n";
+                lanIdentifierData += "Port Value: ";
+                var portIdValue = lanIdentifier.PortId.Value;
+                foreach (var value in portIdValue)
+                {
+                    lanIdentifierData += value + " ";
+                }
+            }
+
+            if (lanIdentifier.NetworkAdapterId != null)
+            {
+                lanIdentifierData += "\nNetwork Adapter Id : " + lanIdentifier.NetworkAdapterId + "\n";
+            }
+            return lanIdentifierData;
+        }
 
         static async Task Main(String[] args)
         {
-            TestScan ts = new TestScan();
-            Console.WriteLine("Listing SSID's ::");
-            await ts.initializeAdapter();
-            Console.WriteLine("Finished");
-            //            foreach (var item in wifiList)
-            //            {
-            //                WiFiAdapter wiFiAdapter = (WiFiAdapter)item;
-            //                Task task = await DisplayNetworkReport(wiFiAdapter.NetworkReport);
-            //            }
+            // First way; using Windows WiFiAdapter:
+            Console.WriteLine("; begin 1st way ; Windows WiFiAdapter ;");
 
+            WiFiAdapter firstAdapter;
             var access = await WiFiAdapter.RequestAccessAsync();
             if (access != WiFiAccessStatus.Allowed)
             {
-                // No access
+                Console.WriteLine("No access allowed to WiFiAdapter");
             }
 
             var adapters = await WiFiAdapter.FindAllAdaptersAsync();
-            var firstAdapter = adapters.First();
+            firstAdapter = adapters.First();
             Console.WriteLine("***** Before scan *****");
             await firstAdapter.ScanAsync();
             Console.WriteLine("***** After scan  *****");
             Console.WriteLine("Adapter info:  " + firstAdapter.NetworkAdapter.NetworkAdapterId);
             Console.WriteLine("Adapter Network Report (count):  " + firstAdapter.NetworkReport.AvailableNetworks.Count);
-//            var wifiNetwork = firstAdapter.NetworkReport.AvailableNetworks.First(x => x.Ssid == "Wifi_Network_Name");
-
-//            Console.WriteLine("wifiNetwork:  " + wifiNetwork.Ssid);
-
-        }
-
-        protected async Task initializeAdapter()
-        {
-            // RequestAccessAsync must have been called at least once by the app before using the API
-            // Calling it multiple times is fine but not necessary
-            // RequestAccessAsync must be called from the UI thread
-            var access = await WiFiAdapter.RequestAccessAsync();
-            if (access != WiFiAccessStatus.Allowed)
+            foreach (var network in firstAdapter.NetworkReport.AvailableNetworks)
             {
-                Console.WriteLine("Access denied");
+                Console.WriteLine("Network Ssid:  " + network.Ssid);
+                Console.WriteLine(network.ToString());
             }
-            else
-            {
-                var result = await Windows.Devices.Enumeration.DeviceInformation.FindAllAsync(WiFiAdapter.GetDeviceSelector());
-                Console.WriteLine("Device Result count:  " + result.Count);
-                if (result.Count >= 1)
-                {
-                    firstAdapter = await WiFiAdapter.FromIdAsync(result[0].Id);
-                }
-                else
-                {
-                    Console.WriteLine("No WiFi Adapters detected on this machine");
-                }
-//                for(int i  = 0; i < result.Count; i++)
-//                {
-//                    wifiList.Add(await WiFiAdapter.FromIdAsync(result[i].Id));
-//                }
+            Console.WriteLine("***** End network ssid list *****");
+
+
+            Console.WriteLine("; begin 1st way ; Windows WiFiAdapter ;");
+            var lanIdentifiers = NetworkInformation.GetLanIdentifiers();
+            Console.WriteLine("Number of lanIdentifiers found:  " + lanIdentifiers.Count);
+            foreach (var lanIdentifier in lanIdentifiers) {
+                Console.WriteLine("lanIdentifier data:  " + GetLanIdentifierData(lanIdentifier));
             }
-        }
 
-        private async Task scan()
-        {
-            await firstAdapter.ScanAsync();
-            await DisplayNetworkReport(firstAdapter.NetworkReport);
-        }
+            // Second way; using netsh
 
-        private async Task DisplayNetworkReport(WiFiNetworkReport report)
-        {
-            Console.WriteLine(string.Format("Network Report String:  {0}", report.AvailableNetworks.Count));
-            Console.WriteLine(string.Format("Network Report Timestamp: {0}", report.Timestamp));
-
-            await Task.Run(() => Parallel.ForEach(report.AvailableNetworks, network =>
-            {
-                Console.WriteLine("Adding network to list:  " + network.Ssid.ToString());
-                wlanList.Add(network);
-            }));
-
-//            foreach (var network in report.AvailableNetworks)
- //           {
- //               Console.WriteLine("Adding network to list:  " + network.Ssid);
- //               wlanList.Add(network);
- //           }
+            Console.WriteLine("; begin 2nd way ; netsh ;");
+            Process pProcess = new Process();
+            pProcess.StartInfo.FileName = "cmd.exe";
+            pProcess.StartInfo.Arguments = "/c netsh wlan show all 2>&1";
+            pProcess.Start();
+            pProcess.WaitForExit();
         }
     }
 }

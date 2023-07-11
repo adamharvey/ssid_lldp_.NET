@@ -1,9 +1,24 @@
 {
   "version": 2,
-  "dgSpecHash": "pgTF6yj9igKvnVx5dDn2moBdh6zeBoxiwAQ+BgHeS8bmfw6eglVGNzw1mB4pAoz0I291NDK/5NTuRmG5XTZ8UA==",
+  "dgSpecHash": "mYLNk/PWhkPIKHAps/m/nbc8QoYYuciGl7a6LsrNh9mjRkPTQZXdZt2alXrADd0UHwoHFRY6n5dTSDmAcWBtPQ==",
   "success": true,
   "projectFilePath": "D:\\repos\\ssid_lldp_.NET_console\\ConsoleApp1\\ConsoleApp1.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\default.DESKTOP-36E94IK\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\default.DESKTOP-36E94IK\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
+    "C:\\Users\\default.DESKTOP-36E94IK\\.nuget\\packages\\system.collections\\4.3.0\\system.collections.4.3.0.nupkg.sha512",
+    "C:\\Users\\default.DESKTOP-36E94IK\\.nuget\\packages\\system.collections.nongeneric\\4.3.0\\system.collections.nongeneric.4.3.0.nupkg.sha512",
+    "C:\\Users\\default.DESKTOP-36E94IK\\.nuget\\packages\\system.diagnostics.debug\\4.3.0\\system.diagnostics.debug.4.3.0.nupkg.sha512",
+    "C:\\Users\\default.DESKTOP-36E94IK\\.nuget\\packages\\system.globalization\\4.3.0\\system.globalization.4.3.0.nupkg.sha512",
+    "C:\\Users\\default.DESKTOP-36E94IK\\.nuget\\packages\\system.io\\4.3.0\\system.io.4.3.0.nupkg.sha512",
+    "C:\\Users\\default.DESKTOP-36E94IK\\.nuget\\packages\\system.reflection\\4.3.0\\system.reflection.4.3.0.nupkg.sha512",
+    "C:\\Users\\default.DESKTOP-36E94IK\\.nuget\\packages\\system.reflection.primitives\\4.3.0\\system.reflection.primitives.4.3.0.nupkg.sha512",
+    "C:\\Users\\default.DESKTOP-36E94IK\\.nuget\\packages\\system.resources.resourcemanager\\4.3.0\\system.resources.resourcemanager.4.3.0.nupkg.sha512",
+    "C:\\Users\\default.DESKTOP-36E94IK\\.nuget\\packages\\system.runtime\\4.3.0\\system.runtime.4.3.0.nupkg.sha512",
+    "C:\\Users\\default.DESKTOP-36E94IK\\.nuget\\packages\\system.runtime.extensions\\4.3.0\\system.runtime.extensions.4.3.0.nupkg.sha512",
+    "C:\\Users\\default.DESKTOP-36E94IK\\.nuget\\packages\\system.text.encoding\\4.3.0\\system.text.encoding.4.3.0.nupkg.sha512",
+    "C:\\Users\\default.DESKTOP-36E94IK\\.nuget\\packages\\system.threading\\4.3.0\\system.threading.4.3.0.nupkg.sha512",
+    "C:\\Users\\default.DESKTOP-36E94IK\\.nuget\\packages\\system.threading.tasks\\4.3.0\\system.threading.tasks.4.3.0.nupkg.sha512",
     "C:\\Users\\default.DESKTOP-36E94IK\\.nuget\\packages\\microsoft.windows.sdk.net.ref\\10.0.19041.28\\microsoft.windows.sdk.net.ref.10.0.19041.28.nupkg.sha512"
   ],
   "logs": []
